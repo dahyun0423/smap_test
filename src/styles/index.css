@@ -1821,9 +1821,172 @@ p {
   font-size: 13px;
 }
 
-.steps-sheet h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+/* ── 전체 경로 (카카오맵식: 지도 + 아래 시트) */
+.route-overview {
+  z-index: 40;
+  background: var(--bg);
+  animation: fade 0.15s;
+}
+.route-map {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 58%;
+  overflow: hidden;
+  /* 지도 밖 여백 — 지도 그림의 위(하늘)·아래(땅) 색과 맞춘다 */
+  background: linear-gradient(#eef2f6 50%, #f5f7fa 50%);
+}
+.route-map-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+}
+.route-map-stage img,
+.route-map-stage svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+.route-map-stage polyline {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.route-map-casing {
+  stroke: #fff;
+}
+.route-map-line {
+  stroke: var(--hero);
+}
+.route-map-arrow {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.route-map-dot {
+  fill: var(--hero);
+  stroke: #fff;
+  stroke-width: 0.6;
+}
+.route-map-dot.is-end {
+  fill: #e5322d;
+}
+/* 말풍선 핀 — 꼬리 끝이 지점을 가리킨다 */
+.route-pin {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 10px));
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--hero);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 3px 8px rgba(0, 20, 107, 0.3);
+}
+.route-pin::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  margin-left: -7px;
+  border: 7px solid transparent;
+  border-bottom: 0;
+  border-top-color: var(--hero);
+}
+.route-pin.is-end {
+  background: #e5322d;
+}
+.route-pin.is-end::after {
+  border-top-color: #e5322d;
+}
+.route-sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: calc(58% - 24px);
+  overflow-y: auto;
+  padding: 8px 20px max(20px, env(safe-area-inset-bottom));
+  background: var(--surface);
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -4px 16px rgba(0, 20, 107, 0.1);
+  animation: up 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.route-sheet-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.route-time {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+.route-time small {
+  margin-left: 2px;
+  font-size: 22px;
+}
+.route-extra {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.route-extra span {
+  font-weight: 500;
+  color: var(--placeholder);
+}
+.route-close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text);
+}
+.route-ends {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 16px 0 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--bg);
+  font-size: 14px;
+  min-width: 0;
+}
+.route-ends b {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.route-end-dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--hero);
+}
+.route-end-dot.is-end {
+  background: #e5322d;
+}
+.route-ends-arrow {
+  flex: none;
+  color: var(--placeholder);
+}
+.route-steps-title {
+  margin: 14px 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
 }
 .steps {
   list-style: none;

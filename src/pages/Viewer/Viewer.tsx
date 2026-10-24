@@ -7,8 +7,8 @@ import FloorBar from '@/components/viewer/FloorBar';
 import FloorSheet from '@/components/viewer/FloorSheet';
 import PanoViewer, { type ViewLink } from '@/components/viewer/PanoViewer';
 import RoomOverlay from '@/components/viewer/RoomOverlay';
+import RouteOverview from '@/components/viewer/RouteOverview';
 import StepCard from '@/components/viewer/StepCard';
-import StepsSheet from '@/components/viewer/StepsSheet';
 import YawEditPanel from '@/components/viewer/YawEditPanel';
 import { NODE_BY_ID } from '@/data/campus';
 import type { ActiveRoute } from '@/types';
@@ -256,7 +256,7 @@ export default function Viewer({
       )}
 
       {showSteps && route && (
-        <StepsSheet
+        <RouteOverview
           route={route}
           stepIdx={stepIdx}
           onNavigate={onNavigate}
