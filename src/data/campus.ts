@@ -162,8 +162,8 @@ export const BUILDINGS: Building[] = [
   {
     id: 'eunju2',
     name: '은주2관',
-    x: 76,
-    y: 82,
+    x: 61,
+    y: 64,
     desc: '기숙사(생활관 5동). 풋살장 옆 남·여 출입구가 따로 있어요.',
     depts: '도시공학과, 나노융합',
     photo: 'school',
@@ -171,8 +171,8 @@ export const BUILDINGS: Building[] = [
   {
     id: 'suin',
     name: '수인관',
-    x: 61,
-    y: 64,
+    x: 72,
+    y: 76,
     desc: '체육관·강당. 실내체육과 교내 행사가 열려요.',
     photo: 'smap',
   },
