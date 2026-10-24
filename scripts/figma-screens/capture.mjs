@@ -99,8 +99,8 @@ const flows = {
     await skipSplash(page)
     await page.goBack().catch(() => {}); await sleep(600)
     await shot(page, '홈 · 출발·도착 모두 → 길찾기 활성', '거리뷰를 닫고 돌아온 상태')
-    await page.getByRole('radio', { name: '계단 없이' }).click()
-    await shot(page, '이동 방식 · 계단 없이·배달 선택', '엘리베이터·경사로 위주 경로')
+    await page.getByRole('radio', { name: '엘리베이터 우선' }).click()
+    await shot(page, '이동 방식 · 엘리베이터 우선 선택', '엘리베이터 위주 경로 (계단은 다른 길이 없을 때만)')
     await btn(page, '출발지·도착지 바꾸기')
     await shot(page, '출발지·도착지 바꾸기', '↑↓ 버튼')
     await ctx.close()
@@ -113,13 +113,10 @@ const flows = {
     ;({ ctx, page } = await open())
     await skipSplash(page)
     await page.locator('.home').evaluate((e) => e.scrollTo(0, 420))
-    for (const [label, desc] of [['매점', '매점·편의점 핀 (편의점 아이콘)'], ['식당', '식당 핀'], ['카페', '카페 핀'], ['ATM', 'ATM·은행 (현장 확인 후 추가 예정)'], ['우체국', '우체국 핀'], ['복사', '복사·서점 핀']]) {
+    for (const [label, desc] of [['매점', '매점·편의점 핀 (편의점 아이콘)'], ['식당', '식당 핀'], ['카페', '카페 핀'], ['ATM', '유담관 신한은행 · 청운관 로비 ATM'], ['우체국', '우체국 핀'], ['복사', '복사·서점 핀']]) {
       await page.getByRole('radio', { name: label }).click()
       await shot(page, `편의시설 · ${label}`, desc)
     }
-    await page.getByRole('radio', { name: '카페' }).click()
-    const multi = page.locator('.cmap-pin', { hasText: '외' }).first()
-    if (await multi.count()) { await multi.click(); await shot(page, '편의시설 핀 (한 지점에 여러 곳) → 목록 시트', '고르면 그곳으로 길찾기') ; await page.mouse.click(195, 100); await sleep(300) }
     await page.getByRole('radio', { name: '식당' }).click()
     await page.getByRole('tab', { name: '지하' }).first().click()
     await shot(page, '편의시설 · 지하 지도로 전환', '다른 층에 더 있으면 안내 문구')
@@ -134,6 +131,36 @@ const flows = {
     await shot(page, '건물 시트 (유담관)', '건물마다 부서·시설 칩이 다름', 900)
     await btn(page, '여기로 길찾기')
     await shot(page, '건물 시트 → 여기로 길찾기', '도착 = 유담관, 출발지 검색이 열림', 250)
+    await ctx.close()
+
+    ;({ ctx, page } = await open({ q: '?weather=rain' }))
+    await skipSplash(page); await sleep(500)
+    await shot(page, '비 오는 날 · 실내·지하 길 우선 자동 켜짐', '날씨를 받아 토글이 자동으로 켜지고 안내 문구가 바뀜')
+    await ctx.close()
+
+    ;({ ctx, page } = await open())
+    await skipSplash(page); await sleep(500)
+    await shot(page, '맑은 날 · 실내·지하 길 우선 꺼짐', '사용자가 직접 켤 수 있음')
+    await ctx.close()
+  },
+
+  // ───────────── 일부 화면만 다시 (피그마 덮어쓰기용) ─────────────
+  async patch() {
+    start('patch')
+    let { ctx, page } = await open()
+    await skipSplash(page)
+    await page.locator('.home').evaluate((e) => e.scrollTo(0, 420))
+    await page.getByRole('radio', { name: '매점' }).click()
+    await shot(page, '편의시설 · 매점', '매점·편의점 핀 · 북악관 GS25는 지하 지도에')
+    await ctx.close()
+
+    ;({ ctx, page } = await open({ q: '?from=f-gate&to=f-cafeteria' }))
+    await skipSplash(page)
+    await panoReady(page)
+    await btn(page, '다음')
+    await panoReady(page)
+    await btn(page, '전체 단계 보기')
+    await shot(page, '전체 경로 · 지도 + 예상 소요 시간', '카카오맵식 경로 지도, 단계를 누르면 그 지점으로', 800)
     await ctx.close()
   },
 
@@ -232,8 +259,8 @@ const flows = {
       await shot(page, `${i}단계 · ${where}`, note ? '이동 안내 문구 있음' : '', 0)
     }
     await btn(page, '전체 단계 보기')
-    await shot(page, '전체 경로 시트', '지나온 단계 · 지금 · 남은 단계, 누르면 그 지점으로', 800)
-    await page.mouse.click(195, 60); await sleep(300)
+    await shot(page, '전체 경로 · 지도 + 예상 소요 시간', '카카오맵식 경로 지도, 단계를 누르면 그 지점으로', 800)
+    await tap(page, '.route-close'); await sleep(300)
     await btn(page, '다음')
     await panoReady(page)
     await shot(page, '도착', '안내가 정확했나요?')
