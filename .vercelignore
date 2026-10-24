@@ -1,0 +1,14 @@
+# 360 원본 zip(828MB)·빌드 산출물은 업로드하지 않음 — Vercel이 public/에서 다시 빌드
+*.zip
+dist
+node_modules
+
+# 얼굴 블러 전 원본 사진 (공개 금지)
+raw
+
+# 사진은 Supabase Storage(공개 버킷 smap)에서 읽는다 — VITE_IMG_BASE. 배포에 400MB씩 싣지 않게 뺀다 (로컬 개발은 public/ 그대로)
+public/pano
+public/thumb
+public/door
+public/building
+backups
