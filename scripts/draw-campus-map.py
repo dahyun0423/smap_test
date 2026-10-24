@@ -1,4 +1,4 @@
-"""SMAP 자체 캠퍼스 지도 (학교 VR투어 미니맵 대체용).
+"""SMAP 캠퍼스 지도 (직접 그린 버전).
 학교 미니맵 그림과 같은 틀(1024×684)에 건물을 같은 자리로 따라 그려서, 건물 핀·360 지점 좌표(%)를 그대로 쓴다.
 실행: python3 scripts/draw-campus-map.py  →  public/map-ground.svg, public/map-underground.svg
 """
@@ -40,15 +40,18 @@ TUNNELS = [[(4, 17), (12, 17.7), (41, 27.7), (55.4, 34.2)], [(10.3, 17.7), (13.8
 
 C = dict(bg='#EEF2F6', ground='#F5F7FA', road='#DCE2EA', roadEdge='#CBD3DE', top='#FFFFFF', topStroke='#C3CEDC',
          wallS='#D5DDE8', wallE='#E2E8F0', field='#DDEFD6', fieldStroke='#B6DBAA', tree='#CFE5C6', treeDark='#B4D4A8',
-         under='#2272EB', underEdge='#194AA6')
+         # 지하: 학교 미니맵처럼 진한 초록 반투명 + 건물은 유리처럼 비치게
+         under='#1F6E3D', underSide='#123F23', underInner='#175A31', glassStroke='#6FAE80')
+UNDER_DEPTH = 12  # 지하 공간 상자의 두께(px)
 
 
 def pts(p): return ' '.join(f'{x:.1f},{y:.1f}' for x, y in p)
 def pct(p): return [(x * W / 100, y * H / 100) for x, y in p]
 
 
-def building(poly, h, faded=False):
-    """윗면 + 남·동쪽 벽 (아래로 h만큼). 뒤쪽 벽은 안 보이니 생략."""
+def building(poly, h, glass=False):
+    """윗면 + 남·동쪽 벽 (아래로 h만큼). 뒤쪽 벽은 안 보이니 생략. glass면 반투명 + 초록 테두리 (지하 지도)"""
+    stroke = C['glassStroke'] if glass else C['topStroke']
     out = []
     n = len(poly)
     for i in range(n):
@@ -58,23 +61,54 @@ def building(poly, h, faded=False):
         if ny <= 0:
             continue
         col = C['wallS'] if abs(ny) >= abs(nx) else C['wallE']
-        out.append(f'<polygon points="{pts([(x1, y1), (x2, y2), (x2, y2 + h), (x1, y1 + h)])}" fill="{col}" stroke="{C["topStroke"]}" stroke-width="1"/>')
-    out.append(f'<polygon points="{pts(poly)}" fill="{C["top"]}" stroke="{C["topStroke"]}" stroke-width="1.2"/>')
-    g = ''.join(out)
-    return f'<g opacity="{0.35 if faded else 1}">{g}</g>'
+        out.append(f'<polygon points="{pts([(x1, y1), (x2, y2), (x2, y2 + h), (x1, y1 + h)])}" fill="{col}" fill-opacity="{0.22 if glass else 1}" stroke="{stroke}" stroke-width="1"/>')
+    out.append(f'<polygon points="{pts(poly)}" fill="{C["top"]}" fill-opacity="{0.3 if glass else 1}" stroke="{stroke}" stroke-width="1.2"/>')
+    return f'<g>{"".join(out)}</g>'
 
 
-def round_building(c, rx, ry, h, faded=False):
+def round_building(c, rx, ry, h, glass=False):
     (cx, cy) = c
-    wall = f'<path d="M{cx - rx},{cy} L{cx - rx},{cy + h} A{rx},{ry} 0 0 0 {cx + rx},{cy + h} L{cx + rx},{cy} Z" fill="{C["wallS"]}" stroke="{C["topStroke"]}"/>'
-    top = f'<ellipse cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" fill="{C["top"]}" stroke="{C["topStroke"]}" stroke-width="1.2"/>'
-    return f'<g opacity="{0.35 if faded else 1}">{wall}{top}</g>'
+    stroke = C['glassStroke'] if glass else C['topStroke']
+    wall = f'<path d="M{cx - rx},{cy} L{cx - rx},{cy + h} A{rx},{ry} 0 0 0 {cx + rx},{cy + h} L{cx + rx},{cy} Z" fill="{C["wallS"]}" fill-opacity="{0.22 if glass else 1}" stroke="{stroke}"/>'
+    top = f'<ellipse cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" fill="{C["top"]}" fill-opacity="{0.3 if glass else 1}" stroke="{stroke}" stroke-width="1.2"/>'
+    return f'<g>{wall}{top}</g>'
 
 
 def ensure_cw(poly):
     # 화면 좌표(y 아래)에서 시계 방향이 되게
     s = sum((x2 - x1) * (y2 + y1) for (x1, y1), (x2, y2) in zip(poly, poly[1:] + poly[:1]))
     return poly if s < 0 else poly[::-1]
+
+
+def inset(poly, k=0.14):
+    """다각형을 무게중심 쪽으로 k만큼 줄인다 (상자 안쪽 바닥면)"""
+    cx = sum(x for x, _ in poly) / len(poly)
+    cy = sum(y for _, y in poly) / len(poly)
+    return [(x + (cx - x) * k, y + (cy - y) * k) for x, y in poly]
+
+
+def under_box(name, poly):
+    """지하 공간 — 아래로 두께가 있는 반투명 초록 상자 + 안쪽 바닥면"""
+    poly = ensure_cw(poly)
+    out = []
+    n = len(poly)
+    for i in range(n):
+        (x1, y1), (x2, y2) = poly[i], poly[(i + 1) % n]
+        if -(x2 - x1) <= 0:
+            continue
+        out.append(f'<polygon points="{pts([(x1, y1), (x2, y2), (x2, y2 + UNDER_DEPTH), (x1, y1 + UNDER_DEPTH)])}" fill="{C["underSide"]}" fill-opacity=".8"/>')
+    out.append(f'<polygon points="{pts(poly)}" fill="{C["under"]}" fill-opacity=".72" stroke="{C["underSide"]}" stroke-width="2" stroke-linejoin="round"/>')
+    out.append(f'<polygon points="{pts(inset(poly))}" fill="{C["underInner"]}" fill-opacity=".85" stroke="{C["underSide"]}" stroke-opacity=".6" stroke-width="1.5" stroke-linejoin="round"/>')
+    return f'<g><title>{name}</title>{"".join(out)}</g>'
+
+
+def under_tunnel(points):
+    """지하 연결통로 — 두께감 있는 초록 띠"""
+    d = 'M' + ' L'.join(f'{x:.1f},{y:.1f}' for x, y in points)
+    side = 'M' + ' L'.join(f'{x:.1f},{y + 6:.1f}' for x, y in points)
+    return (f'<g><title>지하 연결통로</title>'
+            f'<path d="{side}" fill="none" stroke="{C["underSide"]}" stroke-opacity=".8" stroke-width="20" stroke-linejoin="round"/>'
+            f'<path d="{d}" fill="none" stroke="{C["under"]}" stroke-opacity=".85" stroke-width="20" stroke-linejoin="round"/></g>')
 
 
 def scene(underground=False):
@@ -86,7 +120,13 @@ def scene(underground=False):
         parts.append(f'<path d="{d}" fill="none" stroke="{C["roadEdge"]}" stroke-width="{w + 3}" stroke-linecap="round"/>')
         parts.append(f'<path d="{d}" fill="none" stroke="{C["road"]}" stroke-width="{w}" stroke-linecap="round"/>')
     for name, poly in FIELDS.items():
-        parts.append(f'<polygon points="{pts(poly)}" fill="{C["field"]}" stroke="{C["fieldStroke"]}" stroke-width="2" opacity="{0.35 if underground else 1}"><title>{name}</title></polygon>')
+        parts.append(f'<polygon points="{pts(poly)}" fill="{C["field"]}" stroke="{C["fieldStroke"]}" stroke-width="2" opacity="{0.5 if underground else 1}"><title>{name}</title></polygon>')
+    # 지하 지도는 지하 공간을 먼저 그리고 그 위에 반투명 건물을 얹어 비쳐 보이게 한다
+    if underground:
+        for t in TUNNELS:
+            parts.append(under_tunnel(pct(t)))
+        for name, poly in PARKING.items():
+            parts.append(under_box(name, pct(poly)))
     items = [(min(y for _, y in p), 'b', n, p, h) for n, (p, h) in BUILDINGS.items()]
     items += [(c[1] - ry, 'r', n, (c, rx, ry), h) for n, (c, rx, ry, h) in ROUND.items()]
     for _, kind, name, geo, h in sorted(items, key=lambda t: t[0]):  # 뒤(위)에서 앞(아래)으로
@@ -95,15 +135,8 @@ def scene(underground=False):
         else:
             c, rx, ry = geo
             parts.append(f'<g><title>{name}</title>{round_building(c, rx, ry, h, underground)}</g>')
-    if not underground:
-        for x, y in TREES:
-            parts.append(f'<ellipse cx="{x}" cy="{y + 9}" rx="9" ry="3.5" fill="#000" opacity=".06"/><circle cx="{x}" cy="{y}" r="9" fill="{C["tree"]}" stroke="{C["treeDark"]}"/>')
-    else:
-        for t in TUNNELS:
-            d = 'M' + ' L'.join(f'{x:.1f},{y:.1f}' for x, y in pct(t))
-            parts.append(f'<path d="{d}" fill="none" stroke="{C["under"]}" stroke-opacity=".75" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"><title>지하 연결통로</title></path>')
-        for name, poly in PARKING.items():
-            parts.append(f'<polygon points="{pts(pct(poly))}" fill="{C["under"]}" fill-opacity=".7" stroke="{C["underEdge"]}" stroke-width="3" stroke-linejoin="round"><title>{name}</title></polygon>')
+    for x, y in TREES:
+        parts.append(f'<ellipse cx="{x}" cy="{y + 9}" rx="9" ry="3.5" fill="#000" opacity=".06"/><circle cx="{x}" cy="{y}" r="9" fill="{C["tree"]}" stroke="{C["treeDark"]}" opacity="{0.6 if underground else 1}"/>')
     parts.append('</svg>')
     return '\n'.join(parts)
 
