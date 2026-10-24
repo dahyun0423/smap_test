@@ -19,8 +19,8 @@ interface Props {
   markers?: { node: string; label: string; icon?: ReactNode; onClick: () => void }[];
 }
 
-// 캠퍼스 미니맵 (scripts/draw-campus-map.py로 생성). 지점·건물 좌표는 지도 대비 %(0~100)
-const MAP = { ground: 'map-ground.svg', underground: 'map-underground.svg' };
+// 캠퍼스 미니맵 — 학교 VR투어(skuniv.ac.kr/campus-vr) 미니맵 (사용 허락 받음). 지점·건물 좌표는 지도 대비 %(0~100)
+const MAP = { ground: 'map-ground.png', underground: 'map-underground.jpg' };
 
 export default function CampusMap({
   level,
