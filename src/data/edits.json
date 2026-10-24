@@ -1,0 +1,730 @@
+{
+  "titles": {
+    "s1013_110654": "유담관 옆 도로",
+    "s1013_111113": "크리에이티브센터 쪽문 안 (제2주차장)",
+    "s1013_111119": "크리에이티브센터 쪽문 앞",
+    "s1013_111156": "제2주차장 크리에이티브센터 쪽 엘리베이터 앞",
+    "hill_entrance2": "폭풍의언덕 입구",
+    "hill_moonye_stair2": "문예관과 대일관 계단",
+    "daeil_6f_right2": "대일관 6층 우측길",
+    "s1013_101257": "본관 5층 쪽문 (폭풍의언덕쪽)",
+    "s1013_110730": "크리에이티브센터 앞",
+    "hr_5way": "한림관 앞",
+    "hr_road": "한림관앞 도로",
+    "road_hanlim_3way": "유담-한림관 3갈래 교차로",
+    "s1012_163026": "은주1관 1층 입구",
+    "daeilhs_gate_in": "대일외고 정문 앞",
+    "daeilhs_gate": "대일외고 정문 안",
+    "road_yudam_front": "유담관_L층_중앙입구 앞",
+    "s1013_103441": "유담관 L층 중앙",
+    "s1013_103515": "유담관 L층 좌측(엘베2쪽및상영실앞)",
+    "s1013_103540": "유담관 L층 엘베2쪽및코워킹스페이스2",
+    "s1013_103647": "유담관 5층 중앙",
+    "s1013_103244": "유담관 7층 도서관 좌측끝(프젠실)",
+    "s1013_103410": "유담관 L층(로비) 코워킹스페이스1 앞과 도서관입구쪽",
+    "s1013_102512": "유담관 9층 로렐3거리(유담엘베1쪽)",
+    "futsal_to_daeilhs": "수인관 앞",
+    "hr_futsal_back": "수인관 3갈래",
+    "parking_3way": "정문 앞 3갈래 교차로",
+    "parking_entrance": "유담지하주차장 입구",
+    "hanlim_in": "한림관 1층",
+    "bus_stop": "서경대학교",
+    "bukak_1f_elev": "북악관 7층",
+    "bukak_1f_main_in": "북악관 1층 중앙",
+    "bukak_1f_left_in": "북악관 1층 좌측",
+    "bukak_store_back": "GS25와 산책로 가는길",
+    "s1014_101709": "북악관-지하주차장사이",
+    "bukak_b1_elev": "북악관 지하1층 중앙",
+    "hill_entrance": "폭풍의언덕 입",
+    "hill_moonye_3way": "폭풍의언덕",
+    "hill_daeil_sp_stair": "대일관 SP카페",
+    "hill_field_entrance": "스콘스퀘어 입구",
+    "moonye_1f_in": "문예관 1층 중앙",
+    "s1012_105956": "문예관 L층 좌측",
+    "s1012_105920": "문예관 L층 우측",
+    "hill_sp_3way": "폭풍의언덕",
+    "hill_moonye_bon_4way": "폭풍의언덕 4갈래",
+    "daeil_1f_in": "대일관 1층 중앙",
+    "chungwoon_up_front": "청운관 L층 입구앞",
+    "s1012_160527": "혜청사 흡연부스",
+    "field": "스콘스퀘어(초운)",
+    "s1012_160823": "은주2관 앞2",
+    "s1012_160813": "은주2관 앞",
+    "s1012_160614": "건설본부"
+  },
+  "add": [
+    {
+      "a": "gate_front",
+      "b": "daeilhs_gate_in",
+      "via": "walk"
+    },
+    {
+      "a": "road_yudam_3way",
+      "b": "road_hanlim_3way",
+      "via": "walk"
+    },
+    {
+      "a": "hr_5way",
+      "b": "hanlim_in",
+      "via": "walk"
+    },
+    {
+      "a": "road_hanlim_3way",
+      "b": "hr_road",
+      "via": "walk"
+    },
+    {
+      "a": "hr_road",
+      "b": "road_bon_2way",
+      "via": "walk"
+    },
+    {
+      "a": "road_daeilhs_4way",
+      "b": "gate_front",
+      "via": "walk"
+    },
+    {
+      "a": "road_daeilhs_4way",
+      "b": "daeilhs_gate_in",
+      "via": "walk"
+    },
+    {
+      "a": "road_yudam_front",
+      "b": "s1013_103441",
+      "via": "walk"
+    },
+    {
+      "a": "daeilhs_gate",
+      "b": "daeilhs_gate_in",
+      "via": "walk"
+    },
+    {
+      "a": "daeilhs_gate",
+      "b": "futsal_to_daeilhs",
+      "via": "walk"
+    },
+    {
+      "a": "futsal_to_daeilhs",
+      "b": "hr_futsal_back",
+      "via": "walk"
+    },
+    {
+      "a": "futsal_to_daeilhs",
+      "b": "suin_hall_in",
+      "via": "walk"
+    },
+    {
+      "a": "suin_hall_in",
+      "b": "hr_futsal_back",
+      "via": "walk"
+    },
+    {
+      "a": "parking_3way",
+      "b": "road_yudam_3way",
+      "via": "walk"
+    },
+    {
+      "a": "gate_front",
+      "b": "parking_3way",
+      "via": "walk"
+    },
+    {
+      "a": "parking_entrance",
+      "b": "parking_3way",
+      "via": "walk"
+    },
+    {
+      "a": "hr_5way",
+      "b": "eunju1_entrance",
+      "via": "walk"
+    },
+    {
+      "a": "s1013_110654",
+      "b": "s1013_110730",
+      "via": "walk"
+    },
+    {
+      "a": "eunju1_entrance",
+      "b": "eunju2_men",
+      "via": "walk"
+    },
+    {
+      "a": "s1013_111119",
+      "b": "s1013_110730",
+      "via": "walk"
+    },
+    {
+      "a": "s1013_111119",
+      "b": "s1013_111113",
+      "via": "walk"
+    },
+    {
+      "a": "s1013_111119",
+      "b": "road_daeilhs_4way",
+      "via": "walk"
+    },
+    {
+      "a": "road_bon_2way",
+      "b": "road_hanlim_3way",
+      "via": "walk"
+    },
+    {
+      "a": "bon_1f_front",
+      "b": "road_parking_4way",
+      "via": "walk"
+    },
+    {
+      "a": "road_parking_4way",
+      "b": "bus_stop",
+      "via": "walk"
+    },
+    {
+      "a": "bus_stop",
+      "b": "bukak_1f_main_in",
+      "via": "walk"
+    },
+    {
+      "a": "bukak_1f_left_in",
+      "b": "bukak_1f_main_in",
+      "via": "walk"
+    },
+    {
+      "a": "bus_stop",
+      "b": "bukak_store_back",
+      "via": "walk"
+    },
+    {
+      "a": "s1014_101640",
+      "b": "s1014_101709",
+      "via": "walk"
+    },
+    {
+      "a": "s1014_101709",
+      "b": "bukak_b1_elev",
+      "via": "walk"
+    },
+    {
+      "a": "bukak_b1_elev",
+      "b": "bukak_1f_main_in",
+      "via": "walk"
+    },
+    {
+      "a": "bukak_b1_cafeteria",
+      "b": "bukak_store_back",
+      "via": "walk"
+    },
+    {
+      "a": "hill_entrance2",
+      "b": "bukak_1f_main_in",
+      "via": "walk"
+    },
+    {
+      "a": "hill_entrance2",
+      "b": "bukak_store_back",
+      "via": "walk"
+    },
+    {
+      "a": "hill_entrance2",
+      "b": "bon_2115_parking",
+      "via": "walk"
+    },
+    {
+      "a": "hill_moonye_3way",
+      "b": "hill_moonye_bon_4way",
+      "via": "walk"
+    },
+    {
+      "a": "hill_daeil_sp_stair",
+      "b": "daeil_front",
+      "via": "walk"
+    },
+    {
+      "a": "hill_sp_3way",
+      "b": "hill_daeil_sp_stair",
+      "via": "walk"
+    },
+    {
+      "a": "hill_daeil_sp_stair",
+      "b": "hill_moonye_stair2",
+      "via": "walk"
+    },
+    {
+      "a": "hill_moonye_bon_4way",
+      "b": "hill_moonye_stair2",
+      "via": "walk"
+    },
+    {
+      "a": "bus_stop",
+      "b": "hill_entrance2",
+      "via": "walk"
+    },
+    {
+      "a": "hill_moonye_stair2",
+      "b": "moonye_1f_in",
+      "via": "walk"
+    },
+    {
+      "a": "moonye_1f_in",
+      "b": "s1012_105920",
+      "via": "walk"
+    },
+    {
+      "a": "hill_sp_3way",
+      "b": "hill_field_entrance",
+      "via": "walk"
+    },
+    {
+      "a": "s1013_101257",
+      "b": "hill_moonye_bon_4way",
+      "via": "walk"
+    },
+    {
+      "a": "field",
+      "b": "hill_field_entrance",
+      "via": "stairs"
+    },
+    {
+      "a": "daeil_front",
+      "b": "daeil_deck",
+      "via": "stairs"
+    },
+    {
+      "a": "daeil_front",
+      "b": "hill_field_entrance",
+      "via": "stairs"
+    },
+    {
+      "a": "daeil_deck",
+      "b": "daeil_1f_right_door",
+      "via": "stairs"
+    },
+    {
+      "a": "daeil_deck",
+      "b": "daeil_chungwoon_fork",
+      "via": "stairs"
+    },
+    {
+      "a": "daeil_chungwoon_fork",
+      "b": "field",
+      "via": "stairs"
+    },
+    {
+      "a": "s1012_160527",
+      "b": "field",
+      "via": "stairs"
+    }
+  ],
+  "remove": [
+    "futsal_to_daeilhs|road_daeilhs_4way",
+    "road_daeilhs_4way|road_yudam_front",
+    "hanlim_in|hr_road",
+    "daeilhs_gate|road_daeilhs_4way",
+    "hr_5way|road_yudam_3way",
+    "s1013_103410|s1013_103441",
+    "s1013_103441|s1013_103515",
+    "s1013_103441|s1013_110025",
+    "s1013_102512|s1013_103441",
+    "s1013_102948|s1013_103441",
+    "eunju1_entrance|s1012_163020",
+    "eunju1_entrance|hanlim_in",
+    "eunju1_entrance|eunju1_hill_in",
+    "futsal|futsal_to_daeilhs",
+    "futsal|suin_hall_in",
+    "bukak_b1_elev|parking_3way",
+    "daeil_b1_left_end|parking_3way",
+    "chungwoon_down_front|parking_3way",
+    "hyein_down_in|parking_3way",
+    "parking_3way|s1014_100809",
+    "parking_entrance|road_parking_4way",
+    "s1013_110654|s1013_111119",
+    "s1013_110421|s1013_111113",
+    "s1013_110408|s1013_110421",
+    "hanlim_in|s1012_170453",
+    "bon_2115_parking|road_parking_4way",
+    "bukak_1f_main_in|road_parking_4way",
+    "bukak_1f_elev|bukak_1f_main_in",
+    "bukak_1f_elev|bukak_1f_left",
+    "bukak_1f_elev|bukak_1f_right",
+    "bukak_1f_elev|bukak_b1_elev",
+    "bukak_1f_elev|bukak_2f_elev",
+    "bukak_1f_left|bukak_1f_left_in",
+    "bukak_1f_left_in|bus_stop",
+    "bukak_1f_right|bukak_store_back",
+    "bon_2f_front|bukak_b1_elev",
+    "s1014_100954|s1014_101640",
+    "bukak_b1_elev|s1014_101640",
+    "s1014_100954|s1014_101709",
+    "hill_entrance|hill_entrance2",
+    "hill_moonye_3way|hill_moonye_stair",
+    "hill_moonye_stair|hill_moonye_stair2",
+    "s1012_105804|s1012_105956",
+    "s1012_105956|s1012_110053",
+    "s1012_105920|s1012_105956",
+    "eunju1_hill_in|hill_field_entrance",
+    "hill_moonye_bon_4way|road_bon_2way",
+    "hill_moonye_3way|s1013_101257",
+    "daeil_deck|field",
+    "field|hyein_up_front",
+    "daeil_1f_fork_out|daeil_deck",
+    "daeil_1f_right_door|daeil_chungwoon_fork",
+    "chungwoon_up_front|chungwoon_up_in",
+    "s1012_160527|s1012_161221",
+    "s1012_160614|s1012_160813",
+    "eunju_suin_5way|hr_5way"
+  ],
+  "rooms": {
+    "bukak_b1_elev": false
+  },
+  "yaw": {
+    "road_daeilhs_4way>daeilhs_gate": 34,
+    "road_daeilhs_4way>gate_front": 355,
+    "daeilhs_gate_in>gate_front": 358,
+    "daeilhs_gate_in>daeilhs_gate": 68,
+    "gate_front>daeilhs_gate_in": 163,
+    "daeilhs_gate>road_daeilhs_4way": 276,
+    "gate_front>road_yudam_3way": 4,
+    "road_yudam_3way>gate_front": 176,
+    "road_yudam_3way>road_yudam_front": 327,
+    "road_yudam_3way>hr_5way": 3,
+    "road_yudam_3way>road_hanlim_3way": 4,
+    "road_hanlim_3way>hr_5way": 54,
+    "road_hanlim_3way>road_yudam_3way": 204,
+    "road_hanlim_3way>hr_road": 50,
+    "hr_road>hanlim_in": 338,
+    "hr_road>hr_5way": 11,
+    "hr_road>road_hanlim_3way": 107,
+    "hr_road>road_bon_2way": 177,
+    "hr_5way>hr_road": 187,
+    "hr_5way>hanlim_in": 272,
+    "road_daeilhs_4way>daeilhs_gate_in": 32,
+    "road_yudam_front>road_yudam_3way": 197,
+    "s1013_103441>road_yudam_front": 56,
+    "road_yudam_front>s1013_103441": 68,
+    "daeilhs_gate>daeilhs_gate_in": 279,
+    "daeilhs_gate>futsal_to_daeilhs": 15,
+    "futsal_to_daeilhs>futsal": 176,
+    "futsal_to_daeilhs>daeilhs_gate": 359,
+    "hr_futsal_back>futsal_to_daeilhs": 17,
+    "hr_futsal_back>futsal": 270,
+    "eunju2_women>futsal": 172,
+    "futsal>eunju2_men": 293,
+    "futsal_to_daeilhs>hr_futsal_back": 164,
+    "futsal_to_daeilhs>suin_hall_in": 194,
+    "suin_hall_in>futsal_to_daeilhs": 153,
+    "suin_hall_in>hr_futsal_back": 206,
+    "parking_3way>parking_entrance": 316,
+    "parking_3way>road_yudam_3way": 3,
+    "gate_front>parking_3way": 6,
+    "gate_front>road_daeilhs_4way": 198,
+    "parking_entrance>parking_3way": 158,
+    "hr_5way>eunju1_entrance": 7,
+    "road_daeilhs_4way>s1013_110730": 330,
+    "s1013_110654>s1013_110730": 164,
+    "s1013_110730>road_daeilhs_4way": 214,
+    "s1013_110730>s1013_110654": 41,
+    "eunju1_entrance>hr_5way": 95,
+    "eunju2_men>futsal": 285,
+    "eunju2_men>eunju2_women": 105,
+    "eunju1_entrance>eunju2_men": 285,
+    "futsal>eunju2_women": 57,
+    "eunju2_men>hr_5way": 90,
+    "eunju2_men>eunju1_entrance": 107,
+    "hr_5way>eunju2_men": 30,
+    "s1013_111119>s1013_110730": 317,
+    "s1013_111119>s1013_111113": 56,
+    "s1013_111119>road_daeilhs_4way": 138,
+    "road_daeilhs_4way>s1013_111119": 331,
+    "s1013_110730>s1013_111119": 214,
+    "s1013_110442>s1013_110421": 153,
+    "s1013_110442>s1013_110654": 253,
+    "s1013_110421>s1013_110442": 223,
+    "s1013_110421>s1013_110522": 83,
+    "futsal>hr_futsal_back": 260,
+    "hr_futsal_back>hr_5way": 244,
+    "road_bon_2way>hr_road": 155,
+    "road_bon_2way>road_hanlim_3way": 196,
+    "road_bon_2way>bon_1f_front": 77,
+    "road_hanlim_3way>road_bon_2way": 357,
+    "bon_1f_front>road_bon_2way": 289,
+    "road_parking_4way>bon_1f_front": 69,
+    "road_parking_4way>road_bon_2way": 177,
+    "road_parking_4way>bus_stop": 12,
+    "bus_stop>yudam_9f": 200,
+    "bus_stop>road_parking_4way": 164,
+    "bus_stop>bon_2115_parking": 114,
+    "bus_stop>bukak_1f_left_in": 2,
+    "bus_stop>bukak_1f_main_in": 62,
+    "bus_stop>hill_entrance": 90,
+    "bukak_1f_left_in>bukak_1f_main_in": 46,
+    "bukak_1f_main_in>bus_stop": 193,
+    "bukak_1f_main_in>bukak_1f_left_in": 335,
+    "bus_stop>bukak_store_back": 359,
+    "bukak_store_back>bus_stop": 173,
+    "bukak_b1_elev>bukak_b1_cafeteria": 296,
+    "s1014_101640>s1014_101709": 300,
+    "s1014_101709>s1014_101640": 275,
+    "s1014_101709>bukak_b1_elev": 156,
+    "bukak_b1_elev>bukak_1f_main_in": 42,
+    "bukak_b1_cafeteria>bukak_store_back": 215,
+    "bukak_store_back>bukak_b1_cafeteria": 20,
+    "hill_entrance2>bukak_1f_main_in": 302,
+    "hill_entrance2>hill_moonye_3way": 60,
+    "hill_entrance2>yudam_9f": 185,
+    "hill_entrance2>bukak_store_back": 257,
+    "hill_entrance2>bon_2115_parking": 138,
+    "hill_moonye_3way>hill_entrance2": 190,
+    "hill_moonye_3way>hill_moonye_bon_4way": 21,
+    "hill_daeil_sp_stair>daeil_front": 89,
+    "hill_moonye_bon_4way>hill_daeil_sp_stair": 321,
+    "hill_sp_3way>hill_daeil_sp_stair": 299,
+    "hill_daeil_sp_stair>hill_moonye_stair2": 272,
+    "hill_moonye_stair2>hill_moonye_stair": 327,
+    "hill_moonye_stair2>hill_daeil_sp_stair": 39,
+    "hill_moonye_bon_4way>hill_moonye_stair2": 324,
+    "bus_stop>hill_entrance2": 87,
+    "hill_entrance2>bus_stop": 200,
+    "hill_moonye_stair2>moonye_1f_in": 321,
+    "moonye_1f_in>s1012_105956": 281,
+    "s1012_105956>moonye_1f_in": 202,
+    "moonye_1f_in>s1012_105920": 47,
+    "hill_sp_3way>hill_moonye_bon_4way": 178,
+    "hill_sp_3way>hill_field_entrance": 5,
+    "hill_field_entrance>field": 31,
+    "s1013_101257>s1013_101224": 167,
+    "s1013_101257>hill_moonye_bon_4way": 357,
+    "hill_moonye_bon_4way>s1013_101257": 46,
+    "field>hill_field_entrance": 303,
+    "hill_field_entrance>daeil_1f_in": 259,
+    "daeil_front>hill_daeil_sp_stair": 263,
+    "daeil_front>hill_field_entrance": 170,
+    "hill_field_entrance>daeil_front": 261,
+    "daeil_1f_in>daeil_1f_left": 324,
+    "daeil_1f_in>daeil_1f_right": 49,
+    "daeil_1f_in>daeil_front": 180,
+    "daeil_deck>daeil_1f_right_door": 30,
+    "daeil_deck>daeil_front": 299,
+    "daeil_deck>daeil_chungwoon_fork": 117,
+    "daeil_chungwoon_fork>rotc": 6,
+    "daeil_chungwoon_fork>daeil_deck": 265,
+    "daeil_chungwoon_fork>chungwoon_up_front": 83,
+    "daeil_chungwoon_fork>field": 175,
+    "field>daeil_chungwoon_fork": 354,
+    "chungwoon_up_front>daeil_chungwoon_fork": 107,
+    "chungwoon_up_front>s1012_112245": 196,
+    "chungwoon_up_front>s1012_160527": 288,
+    "s1012_160527>s1012_160614": 178,
+    "s1012_160527>field": 286,
+    "field>s1012_160527": 52,
+    "s1012_160614>s1012_160527": 130,
+    "hill_field_entrance>hill_sp_3way": 169,
+    "daeil_1f_left_end>daeil_b1_left": 99,
+    "hr_5way>hr_futsal_back": 41
+  },
+  "blocked": {},
+  "floorRooms": {
+    "yudam|3층": [
+      {
+        "h": "3층",
+        "n": "스포렉스"
+      },
+      {
+        "h": "303",
+        "n": "스크린골프"
+      },
+      {
+        "h": "304",
+        "n": "신한은행"
+      },
+      {
+        "h": "306",
+        "n": "우체국"
+      }
+    ]
+  },
+  "hidden": {
+    "hill_entrance": true,
+    "hill_moonye_stair": true,
+    "daeil_6f_right": true,
+    "s1012_113855": true,
+    "s1013_103834": true,
+    "s1013_103913": true
+  },
+  "placeNode": {},
+  "marks": {
+    "eunju2_men": [
+      {
+        "yaw": 180,
+        "pitch": -4,
+        "title": "카드키 있는 사람만 들어갈 수 있어요",
+        "desc": "서경대 제5생활관(기숙사)·창업보육센터 출입문이에요. 기숙사생과 입주자만 카드키로 열 수 있어요."
+      }
+    ],
+    "hill_entrance2": [
+      {
+        "kind": "label",
+        "yaw": 315,
+        "pitch": 9,
+        "title": "북악관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 122,
+        "pitch": 27,
+        "title": "본관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 90,
+        "pitch": 21,
+        "title": "흡연부스",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 207,
+        "pitch": 1,
+        "title": "이름 입력",
+        "desc": ""
+      }
+    ],
+    "field": [
+      {
+        "kind": "label",
+        "yaw": 322,
+        "pitch": 16,
+        "title": "대일관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 1,
+        "pitch": 11,
+        "title": "상승관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 31,
+        "pitch": 24,
+        "title": "북악관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 49,
+        "pitch": 10,
+        "title": "혜청사",
+        "desc": "혜인관과 청운관 사이"
+      },
+      {
+        "kind": "label",
+        "yaw": 98,
+        "pitch": 16,
+        "title": "혜인관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 182,
+        "pitch": 7,
+        "title": "은주2관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 249,
+        "pitch": 4,
+        "title": "은주1관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 283,
+        "pitch": 15,
+        "title": "한림관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 299,
+        "pitch": 18,
+        "title": "문예관",
+        "desc": ""
+      }
+    ],
+    "daeil_chungwoon_fork": [
+      {
+        "kind": "label",
+        "yaw": 351,
+        "pitch": 17,
+        "title": "상승관",
+        "desc": ""
+      }
+    ],
+    "s1012_160614": [
+      {
+        "kind": "label",
+        "yaw": 217,
+        "pitch": 5,
+        "title": "건설본부",
+        "desc": ""
+      }
+    ],
+    "bus_stop": [
+      {
+        "kind": "label",
+        "yaw": 226,
+        "pitch": 6,
+        "title": "유담관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 133,
+        "pitch": 17,
+        "title": "본관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 51,
+        "pitch": 16,
+        "title": "북악관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 94,
+        "pitch": 31,
+        "title": "문예관",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 112,
+        "pitch": 1,
+        "title": "2115 버스정류장",
+        "desc": ""
+      },
+      {
+        "kind": "label",
+        "yaw": 342,
+        "pitch": -5,
+        "title": "이름 입력",
+        "desc": ""
+      }
+    ],
+    "hill_moonye_stair2": [
+      {
+        "kind": "label",
+        "yaw": 37,
+        "pitch": 20,
+        "title": "이름 입력",
+        "desc": ""
+      }
+    ]
+  },
+  "elev": {}
+}
