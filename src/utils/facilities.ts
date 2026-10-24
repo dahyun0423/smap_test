@@ -20,21 +20,13 @@ interface Facility {
   place?: string;
   /** 길안내 도착 지점 (없으면 검색 장소의 도착 지점) */
   node?: string;
-  /** 지도 핀 위치 (도착 지점이 지하 지도에 있을 때 지상 지도에 띄우려고) */
-  pin?: string;
   /** 검색 장소가 없을 때 보조 설명 */
   sub?: string;
 }
 
 // 현장 확인 목록 — 시설이 바뀌면 여기만 고친다
 const FACILITIES: Facility[] = [
-  {
-    cat: 'store',
-    name: 'GS25 편의점',
-    place: 'GS25 편의점',
-    node: 'bukak_b1_cafeteria',
-    pin: 'bukak_store_back',
-  },
+  { cat: 'store', name: 'GS25 편의점', place: 'GS25 편의점', node: 'bukak_b1_cafeteria' },
   { cat: 'store', name: '이마트24 편의점', place: 'emart24 편의점' },
   { cat: 'store', name: '매점', place: '매점 (905호)' },
   { cat: 'food', name: '교직원·학생식당', place: '교직원 및 학생식당 (201호)' },
@@ -52,7 +44,7 @@ const FACILITIES: Facility[] = [
 ];
 
 export interface FacSpot {
-  /** 지도 핀 위치 */
+  /** 지도 핀 위치 (360 지점) */
   node: string;
   places: Place[];
 }
@@ -68,15 +60,14 @@ function toPlace(f: Facility): Place | null {
   return { id: `fac-${f.cat}-${f.name}`, name: f.name, kind: 'facility', node, sub: f.sub };
 }
 
-/** 분류에 맞는 시설을 핀 위치별로 묶어 반환 */
+/** 분류에 맞는 시설을 360 지점별로 묶어 반환 */
 export function facilitySpots(cat: FacCat): FacSpot[] {
   const by = new Map<string, Place[]>();
   for (const f of FACILITIES) {
     if (f.cat !== cat) continue;
     const place = toPlace(f);
     if (!place) continue;
-    const pin = f.pin && NODE_BY_ID.has(f.pin) ? f.pin : place.node;
-    by.set(pin, [...(by.get(pin) ?? []), place]);
+    by.set(place.node, [...(by.get(place.node) ?? []), place]);
   }
   return [...by].map(([node, places]) => ({ node, places }));
 }
