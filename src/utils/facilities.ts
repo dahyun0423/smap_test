@@ -44,8 +44,7 @@ const FACILITIES: Facility[] = [
   { cat: 'cafe', name: 'SP카페', place: '카페SP (B201호)' },
   { cat: 'cafe', name: 'MD카페', place: 'MD카페 (522호)' },
   { cat: 'atm', name: '신한은행', place: '신한은행 (304호)' },
-  // 북악관 L층 사진이 아직 없어 1층 중앙으로 안내
-  { cat: 'atm', name: '신한은행 ATM', node: 'bukak_1f_main_in', sub: '북악관 L층' },
+  { cat: 'atm', name: '신한은행 ATM', node: 's1012_112245', sub: '청운관 L층(로비)' },
   { cat: 'post', name: '우체국', place: '우체국 (306호)' },
   { cat: 'print', name: '프린트기', node: 'bukak_1f_main_in', sub: '북악관 1층' },
   { cat: 'print', name: '서점', place: '서점 (101호)' },
