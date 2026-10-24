@@ -1,5 +1,5 @@
 :root {
-  /* 피그마 SMAP Color 변수와 같은 값 (brand/navy·blue, bg/*, text/*, border) */
+  /* 디자인 시스템 색 (brand · bg · text · border) */
   --navy: #194aa6;
   --blue: #2272eb;
   --blue-soft: #e8f3ff;
@@ -93,7 +93,7 @@ p {
   border-radius: 14px;
   font-weight: 700;
   font-size: 16px;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.53px;
   transition:
     transform 0.12s,
     background 0.15s,
@@ -171,6 +171,7 @@ p {
   border: 1px solid var(--line);
   font-size: 14px;
   font-weight: 600;
+  letter-spacing: -0.23px;
   color: var(--navy);
   white-space: nowrap;
 }
@@ -239,24 +240,27 @@ p {
   color: var(--muted);
 }
 
-/* ── 홈 (피그마 「default」 98:2912 — 깔끔한 버전. S 길 그림은 NFC 스플래시로 옮김) */
-/* 스크롤은 .home 안에서만 — 하단 메뉴바는 그 밖(.screen)에 고정 */
+/* ── 홈 — 스크롤은 .home 안에서만, 하단 탭바는 그 밖(.screen)에 고정 */
 .home {
   position: absolute;
   inset: 0;
   overflow-y: auto;
   padding: 0 20px calc(108px + env(safe-area-inset-bottom));
+  scrollbar-width: none;
 } /* 지도 카드가 끝 — 메뉴바 바로 위에서 멈춘다 */
+.home::-webkit-scrollbar {
+  display: none;
+}
 
 .hero {
   position: relative;
   margin: 0 -20px;
   padding: 52px 20px 31px;
 }
+/* 파란 배경은 길찾기 카드 아래로 31px 더 내려온다 (카드 높이가 바뀌어도 따라감) */
 .hero-bg {
   position: absolute;
-  inset: 0 0 auto;
-  height: 412px;
+  inset: 0;
   overflow: hidden;
   border-radius: 0 0 28px 28px;
   background: var(--hero);
@@ -269,6 +273,7 @@ p {
   font-size: 26px;
   font-weight: 700;
   line-height: 35px;
+  letter-spacing: 0.25px;
   margin-bottom: 14px;
 }
 .searchbar {
@@ -392,7 +397,6 @@ p {
   align-items: center;
   gap: 10px;
   width: 100%;
-  margin-top: 12px;
   padding: 10px 12px;
   border-radius: var(--r-md);
   background: var(--bg);
@@ -527,7 +531,7 @@ p {
   color: var(--muted);
 }
 
-/* ── 하단 메뉴바 (피그마 「TabBar · 안 B」) — 지도 · 말로 길 묻기 · 제보 */
+/* ── 하단 탭바 — 지도 · 말로 길 묻기 · 제보 */
 .tabbar {
   position: absolute;
   left: 0;
@@ -686,6 +690,7 @@ p {
   font-size: 11px;
   font-weight: 700;
   line-height: 16.5px;
+  letter-spacing: -0.17px;
   white-space: nowrap;
   box-shadow: 0 2px 3px rgba(0, 20, 107, 0.3);
 }
