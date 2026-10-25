@@ -10,7 +10,7 @@ import RoomOverlay from '@/components/viewer/RoomOverlay';
 import RouteOverview from '@/components/viewer/RouteOverview';
 import StepCard from '@/components/viewer/StepCard';
 import YawEditPanel from '@/components/viewer/YawEditPanel';
-import { NODE_BY_ID } from '@/data/campus';
+import { BUILDING_BY_ID, NODE_BY_ID } from '@/data/campus';
 import type { ActiveRoute } from '@/types';
 import {
   VIA_LABEL,
@@ -26,6 +26,9 @@ import {
 import { marksOf } from '@/utils/marks';
 import { floorsOf, roomsOnFloor } from '@/utils/rooms';
 import { isMuted, setMuted, speak } from '@/utils/speech';
+
+/** '3층' → '3F', 'L층' → 'L', 'B1' 그대로 */
+const shortFloor = (f: string) => (f === 'L층' ? 'L' : f.replace('층', 'F'));
 
 interface Props {
   node: string;
@@ -174,22 +177,36 @@ export default function Viewer({
         />
       )}
 
-      {indoorFloor && (
-        <button className="floor-chip glass" onClick={() => setShowFloor(true)}>
-          🚪 이 층의 방{floorRooms ? ` ${floorRooms}곳` : ''}
-        </button>
-      )}
-
-      {showMap && (
+      {/* 미니맵 + 건물 안이면 아래에 붙는 층 띠 (미니맵을 꺼도 층 띠는 남는다) */}
+      {(showMap || indoorFloor) && (
         <div className="viewer-map">
-          <CampusMap
-            level={level}
-            compact
-            route={route?.path}
-            current={node}
-            target={route?.to.node}
-          />
-          <span className="viewer-map-level">{level === 'ground' ? '지상' : '지하'}</span>
+          {showMap && (
+            <div className="viewer-map-body">
+              <CampusMap
+                level={level}
+                compact
+                route={route?.path}
+                current={node}
+                target={route?.to.node}
+              />
+              <span className="viewer-map-level">{level === 'ground' ? '지상' : '지하'}</span>
+            </div>
+          )}
+          {indoorFloor && (
+            <button
+              className="viewer-map-floor"
+              onClick={() => setShowFloor(true)}
+              aria-label={`${indoorFloor} 층 안내도 열기`}
+            >
+              <b>
+                {BUILDING_BY_ID.get(here.building)?.name} {shortFloor(indoorFloor)}
+              </b>
+              <span>
+                층 안내도{floorRooms ? <em>{floorRooms}</em> : null}
+                <i aria-hidden="true">›</i>
+              </span>
+            </button>
+          )}
         </div>
       )}
 

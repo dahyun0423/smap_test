@@ -1431,10 +1431,62 @@ p {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
   pointer-events: none;
 }
+.viewer-map-body {
+  position: relative;
+}
+/* 미니맵 아래 층 띠 — 누르면 층 안내도 */
+.viewer-map-floor {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+  height: 34px;
+  padding: 0 6px 0 8px;
+  font-size: 12px;
+}
+.viewer-map-body + .viewer-map-floor {
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+  height: 32px;
+}
+.viewer-map-floor b {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 800;
+  color: var(--navy);
+}
+.viewer-map-floor span {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  color: var(--blue);
+}
+.viewer-map-floor em {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--blue-soft);
+  font-style: normal;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+}
+.viewer-map-floor i {
+  font-style: normal;
+  font-size: 15px;
+  color: var(--placeholder);
+}
 .viewer-map-level {
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 6px;
+  top: 6px;
   font-size: 11px;
   font-weight: 800;
   color: #fff;
@@ -1457,18 +1509,6 @@ p {
   padding: 1px 6px;
   border-radius: 5px;
 }
-.floor-chip {
-  position: absolute;
-  top: calc(max(12px, env(safe-area-inset-top)) + 58px);
-  left: 12px;
-  height: 36px;
-  padding: 0 14px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--navy);
-}
-
 /* 이 층의 방 */
 .floor-sheet {
   max-height: 82dvh;
