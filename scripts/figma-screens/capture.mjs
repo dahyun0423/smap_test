@@ -87,7 +87,7 @@ const flows = {
     await shot(page, '자주 찾는 곳 칩 → 출발지 고르기', '도착지가 정해지면 출발지 검색이 열리고 토스트 안내', 250)
     await tap(page, '.picker .result:has-text("버스정류장")')
     await panoReady(page)
-    await shot(page, '출발지까지 고르면 바로 길안내 시작', '버스정류장 → 본관 1단계')
+    await shot(page, '출발지까지 고르면 바로 길안내 시작', '고른 출발지에서 바로 1단계')
     await ctx.close()
 
     ;({ ctx, page } = await open({ q: '?from=f-bus' }))
@@ -154,7 +154,7 @@ const flows = {
     await shot(page, '편의시설 · 매점', '매점·편의점 핀 · 북악관 GS25는 지하 지도에')
     await ctx.close()
 
-    ;({ ctx, page } = await open({ q: '?from=f-gate&to=f-cafeteria' }))
+    ;({ ctx, page } = await open({ q: '?from=f-gate&to=bukak_b1_cafeteria' }))
     await skipSplash(page)
     await panoReady(page)
     await btn(page, '다음')
@@ -239,7 +239,7 @@ const flows = {
   // ───────────── 03 거리뷰 길안내 ─────────────
   async guide() {
     start('03 거리뷰 길안내')
-    let { ctx, page } = await open({ q: '?from=f-gate&to=f-cafeteria' })
+    let { ctx, page } = await open({ q: '?from=f-gate&to=bukak_b1_cafeteria' })
     await skipSplash(page)
     await panoReady(page)
     await shot(page, '1단계 · 출발 (미니맵 켜짐)', '파랗게 빛나는 화살표 = 다음 길')
@@ -274,10 +274,10 @@ const flows = {
     ;({ ctx, page } = await open({ q: '?from=f-bus&to=b-hyein' }))
     await skipSplash(page)
     await page.goBack(); await sleep(500)
-    await page.getByRole('radio', { name: '계단 없이' }).click()
+    await page.getByRole('radio', { name: '엘리베이터 우선' }).click()
     await btn(page, '길찾기')
     await panoReady(page)
-    await shot(page, '계단 없는 길로 길안내', '계단 없는 길이 없으면 토스트로 알리고 일반 길')
+    await shot(page, '엘리베이터 우선으로 길안내', '엘리베이터 위주 경로 (계단은 다른 길이 없을 때만)')
     await ctx.close()
 
     ;({ ctx, page } = await open({ features: { ...OFF, db: true }, closures: [{ id: 1, node: 'road_bon_2way', type: '공사 중', until: null }], q: '?from=f-gate&to=b-bonkwan' }))
@@ -406,7 +406,7 @@ const flows = {
     await shot(page, '내 제보 현황 · 비어 있음', '', 600)
     await ctx.close()
 
-    ;({ ctx, page } = await open({ q: '?from=f-gate&to=f-cafeteria' }))
+    ;({ ctx, page } = await open({ q: '?from=f-gate&to=bukak_b1_cafeteria' }))
     await skipSplash(page)
     await panoReady(page)
     await btn(page, '제보하기 (헷갈려요')
